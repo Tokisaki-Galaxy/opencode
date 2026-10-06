@@ -241,7 +241,8 @@ const layer = Layer.effect(
           Effect.orDie,
         )
       const cleaned = text
-        .replace(/<think>[\s\S]*?<\/think>\s*/g, "")
+        .replace(/<think>[\s\S]*?(?:<\/think>|$)\s*/gi, "")
+        .replace(/<\/?think>\s*/gi, "")
         .split("\n")
         .map((line) => line.trim())
         .find((line) => line.length > 0)
